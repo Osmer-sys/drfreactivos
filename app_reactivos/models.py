@@ -62,7 +62,7 @@ class Cantidad(models.Model):
         return '{0}'.format(self.numero)
 
 class Base(models.Model):
-    numero_cas = models.CharField(primary_key=True)
+    numero_cas = models.CharField(primary_key=True max_length=30)
     nombre = models.CharField(max_length=30)
     controlado = models.BooleanField() 
     codigo_reactivo = models.ForeignKey(Codigo, on_delete=models.CASCADE)
