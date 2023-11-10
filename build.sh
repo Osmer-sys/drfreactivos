@@ -6,5 +6,11 @@ pip install -r requirements.txt
 
 python manage.py collectstatic --no-input
 python manage.py migrate
-python manage.py createsuperuser --username superuser --email superuser@mail.com --password s3*1416u
-echo "s3*1416u"
+python manage.py shell <<EOF
+from django.contrib.auth.models import User
+
+# Verificar si el usuario ya existe
+if not User.objects.filter(username='admin').exists():
+    # Crear un nuevo superusuario
+    User.objects.create_superuser('superuser', 'superuser@mail.com', 's3*1416u')
+EOF
